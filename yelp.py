@@ -159,7 +159,8 @@ def main():
     input_values = parser.parse_args()
 
     try:
-        query_api(input_values.term, input_values.location)
+        # query_api(input_values.term, input_values.location)
+        query_api('strip club', 'san francisco')
     except HTTPError as error:
         sys.exit(
             'Encountered HTTP error {0} on {1}:\n {2}\nAbort program.'.format(

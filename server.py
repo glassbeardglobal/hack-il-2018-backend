@@ -3,16 +3,6 @@ from flask_cors import CORS, cross_origin
 import os
 import api
 import time
-import pyrebase
-
-config = {
-    "apiKey": "AIzaSyBc3ZW1iEOZxBv6QhvMn8cm8QySEJo5Ov0",
-    "authDomain": "hackillinois-amadeus-2018.firebaseapp.com",
-    "databaseURL": "https://hackillinois-amadeus-2018.firebaseio.com",
-    "storageBucket": "hackillinois-amadeus-2018.appspot.com"
-}
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
 
 app = Flask(__name__)
 CORS(app)

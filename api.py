@@ -1,9 +1,10 @@
 import yelp
 import requests
+from pprint import pprint
 from amadeus import Flights
 import csv
 import random
-from image_scraper import scrape_image
+from azure import scrape_image
 
 ''' Load dictionary into memory '''
 
@@ -178,6 +179,10 @@ def main(origin, budget_query, categories_queries, departure_date, duration):
                          'departure_date': leave_date,
                          'return_date': return_date}
         experiences.append(exp)
+
+    # for item in experiences:
+    #     pprint(item)
+    #     print()
 
     return experiences
 

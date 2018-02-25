@@ -4,7 +4,7 @@ from amadeus import Flights
 import json
 import csv
 import random
-
+from image_scraper import scrape_image
 
 ''' Load dictionary into memory '''
 def parse_airports(file):
@@ -119,13 +119,18 @@ def retrieve_experience(location, budget, categories_queries):
 				# Store parameters into activity element
 				business_name = s['name']
 				business_pic = s['image_url']
+				latitude = business_lat = s['coordinates']['latitude']
+				longitude = business_lat = s['coordinates']['latitude']
 				guide_name = guide['user']['name']
 				guide_pic = guide['user']['image_url']
 				guide_review = guide['text']
 
 				activities.append({'businessName': business_name, 
 									'desc': guide_review,
-									'pic': business_pic})
+									'pic': business_pic,
+									'latitude': latitude,
+									'longitude': longitude
+									})
 
 	# Add activities to the experience
 	experience['activities'] = activities
@@ -134,7 +139,9 @@ def retrieve_experience(location, budget, categories_queries):
 
 	city = location.split(',')[0].strip()
 	country = location.split(',')[1].strip()
-	experience['place'] = {'city': city, 'country': country}
+	city_pic = scrape_image(city)
+	experience['place'] = {'city': city, 'country': country, 'pic': city_pic}
+
 
 	return experience
 

@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import argparse
 import json
-import pprint
+from pprint import pprint
 import requests
 import sys
 import urllib
@@ -57,7 +57,7 @@ BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 # Defaults for our simple example.
 DEFAULT_TERM = 'dinner'
 DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 3
+SEARCH_LIMIT = 10
 
 
 def request(host, path, api_key, url_params=None):
@@ -136,15 +136,18 @@ def query_api(term, location):
         print(u'No businesses for {0} in {1} found.'.format(term, location))
         return
 
-    business_id = businesses[0]['id']
+    for b in businesses:
+        business_id = b['id']
 
-    print(u'{0} businesses found, querying business info '
-          'for the top result "{1}" ...'.format(
-              len(businesses), business_id))
-    response = get_business(API_KEY, business_id)
+        print(u'{0} businesses found, querying business info '
+              'for the top result "{1}" ...'.format(
+                  len(businesses), business_id))
+        response = get_business(API_KEY, business_id)
 
-    print(u'Result for business "{0}" found:'.format(business_id))
-    pprint.pprint(response, indent=2)
+    return businesses
+
+    # print(u'Result for business "{0}" found:'.format(business_id))
+    # pprint.pprint(response, indent=2)
 
 
 def main():
@@ -160,7 +163,7 @@ def main():
 
     try:
         # query_api(input_values.term, input_values.location)
-        query_api('strip club', 'san francisco')
+        pprint(query_api('sushi', 'san francisco'))
     except HTTPError as error:
         sys.exit(
             'Encountered HTTP error {0} on {1}:\n {2}\nAbort program.'.format(

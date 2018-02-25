@@ -1,5 +1,4 @@
 from flask import Flask, request, abort, jsonify, g, session
-# from flask_session import Session
 import os
 import api
 import time
@@ -7,7 +6,6 @@ app = Flask(__name__)
 
 
 def verify_keys(d):
-    # city, duration, categories, dates, budget
     for item in ['city', 'duration', 'interests', 'date', 'budget']:
         if(item not in d.keys()):
             return None
@@ -35,6 +33,5 @@ def index():
         return jsonify(t)
 
 
-if __name__ == '__main__':
-    app.secret_key = os.urandom(24)
-    app.run(debug=True)
+app.secret_key = os.urandom(24)
+app.run(debug=True)

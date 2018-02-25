@@ -1,7 +1,7 @@
 import yelp
 import requests
 from amadeus import Flights
-
+from image_scraper import scrape_image
 import csv
 import random
 
@@ -147,8 +147,8 @@ def retrieve_experience(location, budget, categories_queries):
 
     city = location.split(',')[0].strip()
     country = location.split(',')[1].strip()
-    # city_pic = scrape_image(city)
-    experience['place'] = {'city': city, 'country': country, 'pic': None}
+    city_pic = scrape_image(city)
+    experience['place'] = {'city': city, 'country': country, 'pic': city_pic}
 
     return experience
 

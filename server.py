@@ -42,7 +42,7 @@ def index():
         t = api.main(city, budget, interests, date, duration)
         session['data'] = t
         db.child('data').set(t)
-        time.sleep(2)
+        time.sleep(1)
         return jsonify(t)
 
 

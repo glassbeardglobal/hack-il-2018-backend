@@ -1,9 +1,9 @@
 import yelp
 import requests
 from amadeus import Flights
-from image_scraper import scrape_image
 import csv
 import random
+from image_scraper import scrape_image
 
 ''' Load dictionary into memory '''
 
@@ -136,8 +136,6 @@ def retrieve_experience(location, budget, categories_queries):
                 activities.append({'businessName': business_name,
                                    'desc': guide_review,
                                    'pic': business_pic,
-                                   'latitude': latitude,
-                                   'longitude': longitude
                                    })
 
     # Add activities to the experience
@@ -148,7 +146,7 @@ def retrieve_experience(location, budget, categories_queries):
     city = location.split(',')[0].strip()
     country = location.split(',')[1].strip()
     city_pic = scrape_image(city)
-    experience['place'] = {'city': city, 'country': country, 'pic': city_pic}
+    experience['place'] = {'city': city, 'latitude': latitude, 'longitude': longitude, 'pic': city_pic}
 
     return experience
 
@@ -176,9 +174,6 @@ def main(origin, budget_query, categories_queries, departure_date, duration):
                          'return_date': return_date}
         experiences.append(exp)
 
-    for exp in experiences:
-        print(exp)
-        print()
     return experiences
 
 

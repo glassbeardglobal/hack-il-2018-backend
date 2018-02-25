@@ -120,7 +120,7 @@ def retrieve_experience(location, budget, categories_queries):
 				business_name = s['name']
 				business_pic = s['image_url']
 				latitude = business_lat = s['coordinates']['latitude']
-				longitude = business_lat = s['coordinates']['latitude']
+				longitude = business_lat = s['coordinates']['longitude']
 				guide_name = guide['user']['name']
 				guide_pic = guide['user']['image_url']
 				guide_review = guide['text']
@@ -139,7 +139,10 @@ def retrieve_experience(location, budget, categories_queries):
 
 	city = location.split(',')[0].strip()
 	country = location.split(',')[1].strip()
+	print('Before')
+	print(city)
 	city_pic = scrape_image(city)
+	print('After')
 	experience['place'] = {'city': city, 'country': country, 'pic': city_pic}
 
 
@@ -169,9 +172,9 @@ def main(origin, budget_query, categories_queries, departure_date, duration):
 							'return_date': return_date}
 		experiences.append(exp)
 
-	# for exp in experiences:
-	# 	print(exp)
-	# 	print()
+	for exp in experiences:
+		print(exp)
+		print()
 	return experiences
 
 

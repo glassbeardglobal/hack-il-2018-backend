@@ -1,4 +1,5 @@
 from flask import Flask, request, abort, jsonify, g, session
+from flask_cors import CORS, cross_origin
 import os
 import api
 import time
@@ -14,6 +15,7 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 app = Flask(__name__)
+CORS(app)
 
 
 def verify_keys(d):

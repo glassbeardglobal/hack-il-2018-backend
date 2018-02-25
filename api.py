@@ -125,6 +125,8 @@ def retrieve_experience(location, budget, categories_queries):
                 reviews = review_resp['reviews']
 
                 # Find a guide for that activity
+                if (len(reviews) == 0):
+                    continue
                 guide = max(reviews, key=lambda x: x['rating'])
 
                 # Store parameters into activity element

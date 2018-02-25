@@ -1,7 +1,8 @@
-from flask import Flask, request, abort, jsonify, g
+from flask import Flask, request, abort, jsonify, g, session
+# from flask_session import Session
+import os
 import api
 import time
-import copy
 app = Flask(__name__)
 
 
@@ -13,10 +14,11 @@ def verify_keys(d):
     return d['city'], d['duration'], d['interests'], d['date'], d['budget']
 
 
+@app.before_request
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if(request.method == 'GET'):
-        return jsonify(getattr(g, 'data', None))
+        return jsonify(session['data'])
     else:
         args = request.get_json()
         items = verify_keys(args)
@@ -29,15 +31,10 @@ def index():
         date[0], date[1], date[2] = date[2], date[0], date[1]
         date = '-'.join(date)
         t = api.main(city, budget, interests, date, duration)
-        time.sleep(10)
-        g.data = copy.deepcopy(t)
+        session['data'] = t
         return jsonify(t)
 
 
-@app.route('/experiences', methods=['GET'])
-def experiences():
-    arg = request.args.to_dict()
-
-
 if __name__ == '__main__':
+    app.secret_key = os.urandom(24)
     app.run(debug=True)

@@ -22,7 +22,7 @@ def parse_airports(file):
 IATA2CITY_FILE = 'airports.dat'
 IATA2CITY = parse_airports(IATA2CITY_FILE)
 AMADEUS_API_KEY = 'wwARh7fxAvIWz9vl8xgbVntCdqtIBDMM'
-NUM_EXPERIENCES = 5
+NUM_EXPERIENCES = 1
 
 # Yelp parameters
 YELP_API_URL = 'https://api.yelp.com'

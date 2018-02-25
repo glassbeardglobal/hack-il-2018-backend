@@ -180,9 +180,9 @@ def main(origin, budget_query, categories_queries, departure_date, duration):
                          'return_date': return_date}
         experiences.append(exp)
 
-    # for item in experiences:
-    #     pprint(item)
-    #     print()
+    for item in experiences:
+        pprint(item)
+        print()
 
     return experiences
 

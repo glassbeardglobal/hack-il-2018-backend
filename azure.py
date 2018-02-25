@@ -13,6 +13,6 @@ def scrape_image(search_term):
     response.raise_for_status()
     resp = response.json()['value']
     if(len(resp) > 0):
-        return random.sample(resp, 1)
+        return random.sample(resp, 1)[0]['contentUrl']
     else:
         return None

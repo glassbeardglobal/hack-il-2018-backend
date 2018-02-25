@@ -34,11 +34,7 @@ def index():
         date[0], date[1], date[2] = date[2], date[0], date[1]
         date = '-'.join(date)
         t = api.main(city, budget, interests, date, duration)
-        session['data'] = t
-        db.child('data').set(t)
-        time.sleep(1)
         return jsonify(t)
 
 
-app.secret_key = os.urandom(24)
 app.run(debug=True)

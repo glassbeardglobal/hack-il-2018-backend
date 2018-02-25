@@ -10,13 +10,16 @@ On a side note, since our platform would (in the future) rely on guides to opt-i
 With Amadeus's new Flight Inspiration Search alongside Yelp's Businesses and Reviews API on Google Cloud Platform, we learned how to mash APIs together in true hackathon spirit.  
 
 ## Challenges we ran into
-Web.Dev.
+Deployment and persisting state in backend servers.
 
 ## Accomplishments that we're proud of
 Bringing forth a completely unique experience to users in hopes to connect people across the world and spread culture far and wide.
 
 ## What we learned
-how2web
+Cool API Endpoints:
+
+Amadeus's YapQ, Flight Inspiration
+Microsoft Azure Search
 
 ## What's next for Xplore
 Bringing this app to market would revolutionize the travel industry and open up the tourism market to smalltown locals all over the world.  Recruiting these cultural experts as modern "travel agents" will ensure no one will ever have the same vacation twice ever again! 

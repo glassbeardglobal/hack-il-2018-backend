@@ -139,10 +139,7 @@ def retrieve_experience(location, budget, categories_queries):
 
 	city = location.split(',')[0].strip()
 	country = location.split(',')[1].strip()
-	print('Before')
-	print(city)
 	city_pic = scrape_image(city)
-	print('After')
 	experience['place'] = {'city': city, 'country': country, 'pic': city_pic}
 
 

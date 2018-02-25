@@ -102,6 +102,9 @@ def retrieve_experience(location, budget, categories_queries):
     guide_name = 'Not selected'
     guide_pic = 'Not selected'
 
+    latitude = str()
+    longitude = str()
+
     # For each category, find a good activity to form an experience
     activities = []
     for category in categories_sampled:

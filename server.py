@@ -24,10 +24,12 @@ def verify_keys(d):
 
 
 @app.before_request
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST', 'OPTIONS'])
 def index():
     if(request.method == 'GET'):
-        return jsonify(session['data'])
+        return jsonify(session.get('data', None))
+    elif(request.method == 'OPTIONS'):
+        return jsonify({'status': 'ok'}), 200
     else:
         args = request.get_json()
         items = verify_keys(args)

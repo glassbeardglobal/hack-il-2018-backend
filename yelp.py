@@ -20,7 +20,7 @@ from __future__ import print_function
 
 import argparse
 import json
-from pprint import pprint
+import pprint
 import requests
 import sys
 import urllib
@@ -45,7 +45,7 @@ except ImportError:
 # It now uses private keys to authenticate requests (API Key)
 # You can find it on
 # https://www.yelp.com/developers/v3/manage_app
-API_KEY = 'TMXm0RTcXiL8XvOn_w1zkETQMEx8FbJdWbp1_Mwd8RVjzpqvt80sIwEWvhjC8c0MmhbwKYXM-CECC5zVvl5WcTtbmmJv5Ow5h6KoBU2MQFKFgU_kZr1GlEvbg-aRWnYx'
+API_KEY= None 
 
 
 # API constants, you shouldn't have to change these.
@@ -57,7 +57,7 @@ BUSINESS_PATH = '/v3/businesses/'  # Business ID will come after slash.
 # Defaults for our simple example.
 DEFAULT_TERM = 'dinner'
 DEFAULT_LOCATION = 'San Francisco, CA'
-SEARCH_LIMIT = 10
+SEARCH_LIMIT = 3
 
 
 def request(host, path, api_key, url_params=None):
@@ -136,18 +136,15 @@ def query_api(term, location):
         print(u'No businesses for {0} in {1} found.'.format(term, location))
         return
 
-    for b in businesses:
-        business_id = b['id']
+    business_id = businesses[0]['id']
 
-        print(u'{0} businesses found, querying business info '
-              'for the top result "{1}" ...'.format(
-                  len(businesses), business_id))
-        response = get_business(API_KEY, business_id)
+    print(u'{0} businesses found, querying business info ' \
+        'for the top result "{1}" ...'.format(
+            len(businesses), business_id))
+    response = get_business(API_KEY, business_id)
 
-    return businesses
-
-    # print(u'Result for business "{0}" found:'.format(business_id))
-    # pprint.pprint(response, indent=2)
+    print(u'Result for business "{0}" found:'.format(business_id))
+    pprint.pprint(response, indent=2)
 
 
 def main():
@@ -162,8 +159,7 @@ def main():
     input_values = parser.parse_args()
 
     try:
-        # query_api(input_values.term, input_values.location)
-        pprint(query_api('sushi', 'san francisco'))
+        query_api(input_values.term, input_values.location)
     except HTTPError as error:
         sys.exit(
             'Encountered HTTP error {0} on {1}:\n {2}\nAbort program.'.format(

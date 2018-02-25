@@ -108,4 +108,3 @@ def scrape_image(query):
     query = '+'.join(query.split())
     images = extract_images(query, 1)
     return get_image_url(images)
-

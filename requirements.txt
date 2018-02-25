@@ -1,0 +1,6 @@
+Flask==0.12.2
+Werkzeug<0.13.0,>=0.12.0
+amadeus==0.1.2
+bs4==0.0.1
+requests==2.7.0
+requests-toolbelt==0.8.0

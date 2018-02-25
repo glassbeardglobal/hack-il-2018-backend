@@ -45,7 +45,7 @@ except ImportError:
 # It now uses private keys to authenticate requests (API Key)
 # You can find it on
 # https://www.yelp.com/developers/v3/manage_app
-API_KEY= None 
+API_KEY = None
 
 
 # API constants, you shouldn't have to change these.
@@ -138,9 +138,9 @@ def query_api(term, location):
 
     business_id = businesses[0]['id']
 
-    print(u'{0} businesses found, querying business info ' \
-        'for the top result "{1}" ...'.format(
-            len(businesses), business_id))
+    print(u'{0} businesses found, querying business info '
+          'for the top result "{1}" ...'.format(
+              len(businesses), business_id))
     response = get_business(API_KEY, business_id)
 
     print(u'Result for business "{0}" found:'.format(business_id))
